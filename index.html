@@ -6,6 +6,10 @@
   <!-- Angular Dependencies-->
   <script src="./bower_components/angular/angular.min.js"></script>
 
+  <!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" /> -->
+  
+  <script src="./bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+
   <!-- Internal JS Dependencies-->
   <script src="./assets/js/app.js"></script>
   <script src="./assets/js/controllers/usersController.js"></script>
@@ -22,11 +26,27 @@
         <button type="submit" >Login</button>
   </form>
 
-  <ul>
-    <li ng-repeat="user in  users.all track by $index">
-      {{ user.login }}
-      {{ avatar_url }}
-    </li>
-  </ul>
+  <div>
+      <ul>
+          <li ng-repeat="user in users.all | startFrom:users.currentPage*users.pageSize | limitTo:users.pageSize">
+              {{ user.login }}
+              <!-- {{ user.avatar_url }} -->
+          </li>
+      </ul>
+      <button ng-disabled="users.currentPage == 0" ng-click="users.currentPage=users.currentPage-1">
+          Previous
+      </button>
+      {{users.currentPage+1}}/{{users.numberOfPages()}}
+      <button ng-disabled="users.currentPage == 6" ng-click="users.currentPage=users.currentPage+1">
+          Next
+      </button>
+  </div>
+
+
+
+
+
+
+
 </body>
 </html>
