@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app="githubUsers">
+<head>
+  <title></title>
+
+  <!-- Angular Dependencies-->
+  <script src="./bower_components/angular/angular.min.js"></script>
+
+  <!-- Internal JS Dependencies-->
+  <script src="./assets/js/app.js"></script>
+  <script src="./assets/js/controllers/usersController.js"></script>
+
+  <!-- Custom CSS  -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+</head>
+<body data-ng-controller="UsersController as users">
+
+
+  <form id="login" ng-submit="users.searchUsers()" novalidate>
+        <input type="text" ng-model="users.query"> 
+        <button type="submit" >Login</button>
+  </form>
+
+  <ul>
+    <li ng-repeat="user in  users.all track by $index">
+      {{ user.login }}
+      {{ avatar_url }}
+    </li>
+  </ul>
+</body>
+</html>
