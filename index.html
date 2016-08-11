@@ -20,28 +20,32 @@
 </head>
 <body data-ng-controller="UsersController as users">
 
-
   <form id="login" ng-submit="users.searchUsers()" novalidate>
         <input type="text" ng-model="users.query"> 
         <button type="submit" >Login</button>
   </form>
 
   <div>
+    <h3> {{ users.alert }} </h3>
+  </div>
+  <div>
       <ul>
           <li ng-repeat="user in users.all | startFrom:users.currentPage*users.pageSize | limitTo:users.pageSize">
               {{ user.login }}
               <!-- {{ user.avatar_url }} -->
+              <img src="{{ user.avatar_url }}" height="50px" width="50px">
           </li>
       </ul>
-      <button ng-disabled="users.currentPage == 0" ng-click="users.currentPage=users.currentPage-1">
-          Previous
-      </button>
-      {{users.currentPage+1}}/{{users.numberOfPages()}}
-      <button ng-disabled="users.currentPage == 6" ng-click="users.currentPage=users.currentPage+1">
-          Next
-      </button>
   </div>
-
+  <div ng-show="users.totalPages > 0">
+    <button ng-disabled="users.currentPage == 0" ng-click="users.currentPage=users.currentPage-1">
+        Previous
+    </button>
+    {{users.currentPage+1}}/{{users.totalPages}}
+    <button ng-disabled="users.currentPage == users.totalPages-1" ng-click="users.currentPage=users.currentPage+1">
+        Next
+    </button>
+  </div>
 
 
 
