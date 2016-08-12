@@ -1,0 +1,26 @@
+<form ng-submit="users.searchUsers()" novalidate>
+      <input type="text" ng-model="users.userQuery"> 
+      <button type="submit">Search</button>
+</form>
+
+<div>
+  <h3> {{ users.alert }} </h3>
+</div>
+
+<div>
+    <ul>
+        <li ng-repeat="user in users.all | startFrom:users.currentPage*users.pageSize | limitTo:users.pageSize" ng-click="users.getUser(user.login)" ui-sref="user">
+            {{ user.login }}
+            <img ng-src="{{ user.avatar_url }}" height="50px" width="50px">
+        </li>
+    </ul>
+</div>
+<div ng-show="users.totalPages > 0">
+  <button ng-disabled="users.currentPage == 0" ng-click="users.currentPage=users.currentPage-1">
+      Previous
+  </button>
+  {{users.currentPage+1}}/{{users.totalPages}}
+  <button ng-disabled="users.currentPage == users.totalPages-1" ng-click="users.currentPage=users.currentPage+1">
+      Next
+  </button>
+</div>

@@ -5,6 +5,7 @@
 
   <!-- Angular Dependencies-->
   <script src="./bower_components/angular/angular.min.js"></script>
+  <script src="./bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
 
   <!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" /> -->
   
@@ -13,48 +14,17 @@
   <!-- Internal JS Dependencies-->
   <script src="./assets/js/app.js"></script>
   <script src="./assets/js/controllers/usersController.js"></script>
-
+  <script src="./assets/js/config/routes.js"></script>
+  
   <!-- Custom CSS  -->
   <link rel="stylesheet" href="./assets/css/style.css">
 
 </head>
 <body data-ng-controller="UsersController as users">
 
-  <form id="login" ng-submit="users.searchUsers()" novalidate>
-        <input type="text" ng-model="users.userQuery"> 
-        <button type="submit" >Search</button>
-  </form>
-
-  <div>
-    <h3> {{ users.alert }} </h3>
-  </div>
-  <div>
-      <ul>
-          <li ng-repeat="user in users.all | startFrom:users.currentPage*users.pageSize | limitTo:users.pageSize" ng-click="users.getUser(user.login)">
-              {{ user.login }}
-              <!-- {{ user.avatar_url }} -->
-              <img ng-src="{{ user.avatar_url }}" height="50px" width="50px">
-          </li>
-      </ul>
-  </div>
-  <div ng-show="users.totalPages > 0">
-    <button ng-disabled="users.currentPage == 0" ng-click="users.currentPage=users.currentPage-1">
-        Previous
-    </button>
-    {{users.currentPage+1}}/{{users.totalPages}}
-    <button ng-disabled="users.currentPage == users.totalPages-1" ng-click="users.currentPage=users.currentPage+1">
-        Next
-    </button>
-  </div>
-
-  <!-- <div class="item" ng-repeat="item in items | orderObjectBy:'position'"> -->
-  <div>
-      <ul>
-          <li ng-repeat="user in users.repos | orderBy:'-stargazers_count' ">
-              {{ user.stargazers_count }}              
-          </li>
-      </ul>
-  </div>
+  <main ui-view>
+  
+  </main>
 
 </body>
 </html>

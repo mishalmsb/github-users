@@ -1,0 +1,9 @@
+<div>
+    <ul>
+        <li ng-repeat="user in users.repos | orderBy:'-stargazers_count' ">
+            {{ user.stargazers_count }}              
+        </li>
+    </ul>
+</div>
+
+<a href="#" ui-sref="users"> Back </a>

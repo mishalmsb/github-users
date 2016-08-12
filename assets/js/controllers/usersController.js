@@ -30,47 +30,31 @@ function UsersController($http, $scope){
           if (self.usersCount == 0) {
               self.alert = "Nothing";
           }
-//console.log(response);
        }, function myError(response) {
-          self.alert = response;
+          self.alert = response.data.message;
        });
   }
-  //Details view page for a selected user from the results pages (name, location, avatar, 3
-  //repositories with higher stargazers_count and other information you consider relevant)
   self.getUser = function(user) {
       $http({
           method : "GET",
           url : "https://api.github.com/users/" + user 
        }).then(function mySucces(response) {
-          
-// console.log(response.data.name);
-// console.log(response.data.location);
-// console.log(response.data.avatar_url);
           self.getUserRepo(user);
        }, function myError(response) {
-          self.alert = response;
+          self.alert = response.data.message;
        });
   }
-
-    self.getUserRepo = function(user) {
-        $http({
-            method : "GET",
-            url : "https://api.github.com/users/"+user+"/repos?page=5000,per_page=100,order=desc"
-              
-         }).then(function mySucces(response) {
-            
-  // console.log(response.data[0].stargazers_count);
-  console.log(response.data);
-  // console.log(response.data.avatar_url);
-          self.repos = response.data;
-
-         }, function myError(response) {
-            self.alert = response;
-         });
-    }
-  
-  self.getUser("GrahamCampbell");
-
+  self.getUserRepo = function(user) {
+      $http({
+          method : "GET",
+          url : "https://api.github.com/users/"+user+"/repos?page=1&per_page=100"
+       }).then(function mySucces(response) {
+        self.repos = response.data;
+       }, function myError(response) {
+          self.alert = response.data.message;
+       });
+  }
+  // self.getUser("GrahamCampbell");
   return self;
 }
 
