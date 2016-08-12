@@ -21,8 +21,8 @@
 <body data-ng-controller="UsersController as users">
 
   <form id="login" ng-submit="users.searchUsers()" novalidate>
-        <input type="text" ng-model="users.query"> 
-        <button type="submit" >Login</button>
+        <input type="text" ng-model="users.userQuery"> 
+        <button type="submit" >Search</button>
   </form>
 
   <div>
@@ -30,10 +30,10 @@
   </div>
   <div>
       <ul>
-          <li ng-repeat="user in users.all | startFrom:users.currentPage*users.pageSize | limitTo:users.pageSize">
+          <li ng-repeat="user in users.all | startFrom:users.currentPage*users.pageSize | limitTo:users.pageSize" ng-click="users.getUser(user.login)">
               {{ user.login }}
               <!-- {{ user.avatar_url }} -->
-              <img src="{{ user.avatar_url }}" height="50px" width="50px">
+              <img ng-src="{{ user.avatar_url }}" height="50px" width="50px">
           </li>
       </ul>
   </div>
@@ -47,10 +47,14 @@
     </button>
   </div>
 
-
-
-
-
+  <!-- <div class="item" ng-repeat="item in items | orderObjectBy:'position'"> -->
+  <div>
+      <ul>
+          <li ng-repeat="user in users.repos | orderBy:'-stargazers_count' ">
+              {{ user.stargazers_count }}              
+          </li>
+      </ul>
+  </div>
 
 </body>
 </html>
