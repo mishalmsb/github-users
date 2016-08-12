@@ -1,9 +1,66 @@
-<div>
+<!-- <div class="row">
+  <div class="col-md-2 col-md-offset-5">
+    
+  </div>
+</div> -->
+
+
+<!-- <div>
     <ul>
-        <li ng-repeat="user in users.repos | orderBy:'-stargazers_count' ">
+        <li ng-repeat="user in users.repos | orderBy:'-stargazers_count' | limitTo:3">
             {{ user.stargazers_count }}              
         </li>
     </ul>
+</div> -->
+
+<!-- <div class="row">
+  <div class="container">
+      <h4> Repos with more Stargazers Count </h4>
+      <div class="col-md-3" ng-repeat="user in users.repos | orderBy:'-stargazers_count' | limitTo:3">
+          <div class="thumbnail">
+              
+
+              <div class="caption">
+                  
+                  <p>  Stargazers Count {{ user.stargazers_count }} </p> 
+              </div>
+          </div>
+      </div>
+  </div>
 </div>
 
-<a href="#" ui-sref="users"> Back </a>
+<div class="row">
+  <div class="col-md-2 col-md-offset-5">  
+    <a href="#" ui-sref="users"> Back </a>
+  </div>
+</div> -->
+
+<div class='container' id='container'>
+  <div class="row">
+      <div class="col-md-2 col-md-offset-3">
+        <div class='card-wrapper'>
+          <div class='arrow' id='previous'><i class="fa fa-arrow-left" aria-hidden="true"></i></div>
+          <div class='arrow' id='next'><i class="fa fa-arrow-right" aria-hidden="true"></i></div>
+          <div class='main-window' id='main-window'>
+
+            <div class='user-image' style="background-image: url({{users.user.data.avatar_url}})">
+              <div class='username'>{{ users.user.data.name }}</div>
+            </div>
+            <div class='user-info'>
+              <div class='quote'></div>
+            </div>
+
+            <div class='social-info'>
+              <div class='social-info-elm' ng-repeat="repo in users.repos | orderBy:'-stargazers_count' | limitTo:3">{{ repo.name }}<br><span class='lg'>{{ repo.stargazers_count }}</span></div>
+            </div>
+            <div class="user-info"> 
+                <div class='quote'>
+                  <a href="#" ui-sref="users"> <span class="glyphicon glyphicon-arrow-left"></span> </a>
+                </div>
+                
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>

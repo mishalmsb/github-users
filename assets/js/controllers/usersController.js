@@ -14,7 +14,7 @@ function UsersController($http, $scope){
   self.totalPages     = 0;
   self.usersCount     = 0;
   self.currentPage    = 0;
-  self.pageSize       = 10;
+  self.pageSize       = 12;
   self.alert          = "";
   self.repos          = [];
 
@@ -24,9 +24,10 @@ function UsersController($http, $scope){
           method : "GET",
           url : "https://api.github.com/search/users?q=" + self.userQuery + "&page="+ self.pege +"&per_page=100" 
        }).then(function mySucces(response) {
+          self.userQuery = "";
           self.all = response.data.items;
           self.usersCount = response.data.total_count;
-          self.totalPages = Math.ceil(self.all.length / 10);
+          self.totalPages = Math.ceil(self.all.length / 12);
           if (self.usersCount == 0) {
               self.alert = "Nothing";
           }
@@ -39,22 +40,26 @@ function UsersController($http, $scope){
           method : "GET",
           url : "https://api.github.com/users/" + user 
        }).then(function mySucces(response) {
+          self.user = response ;
+          // console.log(self.user);
           self.getUserRepo(user);
        }, function myError(response) {
           self.alert = response.data.message;
        });
   }
   self.getUserRepo = function(user) {
+      self.user.name = user
       $http({
           method : "GET",
           url : "https://api.github.com/users/"+user+"/repos?page=1&per_page=100"
        }).then(function mySucces(response) {
-        self.repos = response.data;
+          self.repos = response.data;
+          console.log(response.data[0]);
        }, function myError(response) {
           self.alert = response.data.message;
        });
   }
-  // self.getUser("GrahamCampbell");
+  self.getUser("GrahamCampbell");
   return self;
 }
 
