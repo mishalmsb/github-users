@@ -81,8 +81,8 @@ function UsersController($http, $scope, $state, $location){
   self.init()
 
 
-  self.userQuery = "Giacomo";
-  self.searchUsers();
+  // self.userQuery = "Giacomo";
+  // self.searchUsers();
   // self.getUser("Mishal");
   return self;
 }
