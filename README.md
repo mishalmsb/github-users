@@ -2,7 +2,7 @@
 
 ###CODE TEST. 
 
-###[Live Demo unavailable] (mishalmsb.com)
+###[Live Demo unavailable] (http://www.mishalmsb.com/)
 
 ####Some of the functionalities:
 - Search Users from Github API
@@ -23,7 +23,5 @@
  
 
 Feedback welcome.
-
-
 
 
