@@ -2,8 +2,8 @@ angular
   .module('githubUsers')
   .controller('UsersController', UsersController);
 
-UsersController.$inject = ['$http', '$scope'];
-function UsersController($http, $scope){
+UsersController.$inject = ['$http', '$scope', '$state', '$location'];
+function UsersController($http, $scope, $state, $location){
 
   var self                  = this;
   self.all                  = [];
@@ -44,7 +44,6 @@ function UsersController($http, $scope){
           url : "https://api.github.com/users/" + user 
        }).then(function mySucces(response) {
           self.user = response ;
-console.log(self.user);
           self.getUserRepo(user);
        }, function myError(response) {
           self.alert = response.data.message;
@@ -74,8 +73,16 @@ console.log(self.user);
           self.alert = response.data.message;
        });
   }
-  // self.userQuery = "Giacomo";
-  // self.searchUsers();
+
+  self.init = function () {
+      $location.path('/')
+  };
+
+  self.init()
+
+
+  self.userQuery = "Giacomo";
+  self.searchUsers();
   // self.getUser("Mishal");
   return self;
 }
