@@ -22,7 +22,9 @@
               </div>
             </div>
             <div class='repo-info'>
-              <div class='repo-info-elm' ng-repeat="repo in users.repos | orderBy:'-stargazers_count' | limitTo:3"> {{ repo.name }}</div>
+              <div class='repo-info-elm' ng-repeat="repo in users.repos | orderBy:'-stargazers_count' | limitTo:3"> 
+                <a href="{{repo.html_url}}" target="_blanc"> {{ repo.name }} </a> 
+              </div>
             </div>
             <div class='repo-count'>
               <div class='repo-count' ng-repeat="repo in users.repos | orderBy:'-stargazers_count' | limitTo:3"> <span class='lg'>{{ repo.stargazers_count }}</span></div>
