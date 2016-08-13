@@ -23,13 +23,13 @@ function UsersController($http, $scope, $state, $location){
       self.currentPage = 0;
       $http({
           method : "GET",
-          url : "https://api.github.com/search/users?q=" + self.userQuery + "&page="+ self.pege +"&per_page=100" 
+          url : "https://api.github.com/search/users?q=" + self.userQuery + "&page="+ self.pege +"&per_page=96" 
        }).then(function mySucces(response) {
           self.currentUsers = self.userQuery;
           self.userQuery = "";
           self.all = response.data.items;
           self.usersCount = response.data.total_count;
-          self.currentUsersCount = 100;
+          self.currentUsersCount = 96;
           self.totalPages = Math.ceil(self.all.length / 12);
           if (self.usersCount == 0) {
               self.alert = "Could not find user";
@@ -64,11 +64,11 @@ function UsersController($http, $scope, $state, $location){
       self.pege++;
       $http({
           method : "GET",
-          url : "https://api.github.com/search/users?q=" + user + "&page="+ self.pege +"&per_page=100" 
+          url : "https://api.github.com/search/users?q=" + user + "&page="+ self.pege +"&per_page=96" 
        }).then(function mySucces(response) {
           self.all = self.all.concat(response.data.items);
           self.totalPages = Math.ceil(self.all.length / 12);
-          self.currentUsersCount+= 100;
+          self.currentUsersCount+= 96;
        }, function myError(response) {
           self.alert = response.data.message;
        });
