@@ -15,7 +15,7 @@ Search users:
  
       $http({
           method : "GET",
-          url : "https://api.github.com/search/users?q=" + userQuery +      "&page=1&per_page=100" 
+          url : "https://api.github.com/search/users?q="+userQuery+"&page=1&per_page=100" 
        }).then(function mySucces(response) {
        }, function myError(response) {
        });
@@ -33,7 +33,7 @@ The user search dosn't return the repos info so i crated a new get request to ge
 
       $http({
           method : "GET",
-          url : "https://api.github.com/users/"+user+"/repos?     page=1&per_page=100"
+          url : "https://api.github.com/users/"+user+"/repos?page=1&per_page=100"
        }).then(function mySucces(response) {
           self.repos = response.data;
        }, function myError(response) {
@@ -45,7 +45,7 @@ The Github API only returns 100 users per GET request so in case there is more t
       self.pege++;
       $http({
           method : "GET",
-          url : "https://api.github.com/search/users?q=" + user +       "&page="+ self.pege +"&per_page=100" 
+          url : "https://api.github.com/search/users?q=" + user +"&page="+ self.pege +"&per_page=100" 
        }).then(function mySucces(response) {
        }, function myError(response) {
        });
@@ -57,17 +57,31 @@ The Github API only returns 100 users per GET request so in case there is more t
 <img width="1177" alt="screen shot 2016-08-13 at 15 13 33" src="https://cloud.githubusercontent.com/assets/18425871/17643663/afcc737c-6168-11e6-9f15-3537c770fd47.png">
 
 ####User page.
-<img width="449" alt="screen shot 2016-08-13 at 15 13 46" src="https://cloud.githubusercontent.com/assets/18425871/17643664/b4ec915c-6168-11e6-966c-c31be7cd0c5e.png">
+<img width="300" alt="screen shot 2016-08-13 at 15 13 46" src="https://cloud.githubusercontent.com/assets/18425871/17643664/b4ec915c-6168-11e6-966c-c31be7cd0c5e.png">
 
 ##Technology used
 - AngularJS
 - Bootstrap
 
-##To run the locally: 
+##To run the locally:
+####on the console:
+
+git clone git@github.com:mishalmsb/github-users.git 
+
+cd github-users
+
 python -m SimpleHTTPServer
 
- 
-##_________________________________________
+or
+
+npm install
+
+node server.js
+
+####then open browser and copy the following link:
+
+http://localhost:8000/
+
+___
 Feedback welcome.
-
-
+___
